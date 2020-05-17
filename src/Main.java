@@ -4,14 +4,18 @@ import java.util.TreeSet;
 
 public class Main {
 	public static void main(String[] args) {
-		//task c gacha
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt(); sc.nextLine();
-		TreeSet<String> vals = new TreeSet<>();
-		for(int i = 0; i< n; i++){
-			vals.add(sc.nextLine());
+		//task d multiple (hard) -- failed
+		Scanner sc= new Scanner(System.in);
+		String S = sc.nextLine();
+		int count = 0;
+		for(int i = 0; i< S.length(); i++){
+			for(int j = i+1; j< S.length(); j++){
+				if(Long.parseLong(S.substring(i, j))%2019==0){
+					count++;
+				}
+			}
 		}
-		System.out.println(vals.size());
+		System.out.println(count);
 
 	}
 }
