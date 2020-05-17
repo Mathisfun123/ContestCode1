@@ -1,21 +1,17 @@
 import java.io.File;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class Main {
 	public static void main(String[] args) {
-		//task b battle
+		//task c gacha
 		Scanner sc = new Scanner(System.in);
-		int a = sc.nextInt(); int b =sc.nextInt(); int c = sc.nextInt(); int d = sc.nextInt();
-		boolean turn = true;
-		while(a>0&&c>0){
-			if(turn){
-				c-=b;
-			}else{
-				a-=d;
-			}
-			turn= !turn;
+		int n = sc.nextInt(); sc.nextLine();
+		TreeSet<String> vals = new TreeSet<>();
+		for(int i = 0; i< n; i++){
+			vals.add(sc.nextLine());
 		}
-		System.out.println(a>0?"Yes":"No");
+		System.out.println(vals.size());
 
 	}
 }
