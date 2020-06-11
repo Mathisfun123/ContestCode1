@@ -1,9 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class DFS_attempt {
+public class BFS_attempts {
 	public static void main(String[] args) throws FileNotFoundException {
 		int [][] maze = new int[5][5];
 		Scanner sc = new Scanner(new File("maze"));
@@ -15,11 +17,11 @@ public class DFS_attempt {
 		}
 		boolean visited [][] = new boolean[5][5];
 		int posx= 0; int posy = 0;
-		Stack <Integer> xvals = new Stack<>();
-		Stack <Integer> yvals = new Stack<>();
+		Queue<Integer> xvals = new LinkedList<>();
+		Queue <Integer> yvals = new LinkedList<>();
 		xvals.add(posx); yvals.add(posy); boolean found = false;
-		while(!found && xvals.size()>0){//talk about failing by doing xpos!=4 && ypos!=4
-			posx= xvals.pop(); posy= yvals.pop();
+		while(!found && xvals.size()>0){
+			posx= xvals.poll(); posy= yvals.poll();
 			if(!visited[posx][posy]) {
 				visited[posx][posy] = true;
 				if (inBounds(posx + 1, posy) && maze[posx + 1][posy] == 0) {
@@ -36,7 +38,7 @@ public class DFS_attempt {
 				found = true;
 			}
 		}
-
+		System.out.println(found);
 	}
 	public static boolean inBounds(int x, int y){
 		if(x<0 || x>4){
