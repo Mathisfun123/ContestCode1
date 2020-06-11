@@ -18,7 +18,7 @@ public class DFS_attempt {
 		Stack <Integer> xvals = new Stack<>();
 		Stack <Integer> yvals = new Stack<>();
 		xvals.add(posx); yvals.add(posy); boolean found = false;
-		while(posx!=4 && posy!=4 && xvals.size()>0 && !found){
+		while(!found && xvals.size()>0){//talk about failing
 			posx= xvals.pop(); posy= yvals.pop();
 			if(!visited[posx][posy]) {
 				visited[posx][posy] = true;
@@ -36,7 +36,7 @@ public class DFS_attempt {
 				found = true;
 			}
 		}
-		System.out.println(posx + " " + posy + found);
+
 	}
 	public static boolean inBounds(int x, int y){
 		if(x<0 || x>4){
