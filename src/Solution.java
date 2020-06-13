@@ -7,12 +7,12 @@ public class Solution {
 		System.out.println(minPathSum(grid));
 	}
 	public static int minPathSum(int[][] grid) {
-		int dps[][] = new int[grid.length][grid.length];
+		int dps[][] = new int[grid.length][grid[0].length];
 		for(int i = 0; i< grid.length; i++){
-			for(int j =0; j< grid.length; j++){
+			for(int j =0; j< grid[i].length; j++){
 				dps[i][j] = (i==0&&j==0)?grid[0][0]: (i==0)? dps[i][j-1] + grid[i][j]: (j==0)? dps[i-1][j]+ grid[i][j] :Math.min(dps[i-1][j], dps[i][j-1]) + grid[i][j];
 			}
 		}
-		return dps[grid.length-1][grid.length-1];
+		return dps[grid.length-1][grid[0].length-1];
 	}
 }
