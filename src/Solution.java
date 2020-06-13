@@ -7,19 +7,13 @@ public class Solution {
 		System.out.println(minCostClimbingStairs(cost));
 	}
 	public static int minCostClimbingStairs(int[] cost) {
-		int[] dps = new int[cost.length];
-		Arrays.fill(dps, Integer.MAX_VALUE);
-		dps[0] = 0; dps[1] = 0;
-		int ans = -1;
-		for(int i = 2; i< dps.length+1; i++){
-			for(int j = Math.max(0,i-2); j< i; j++){
-				if(i!=dps.length){
-					dps[i]= Math.min(dps[i], dps[j]+ cost[j]);
-				}else{
-					ans = Math.min(dps[dps.length-1] +cost[dps.length-1], dps[dps.length-2]+cost[dps.length-2]);
-				}
-			}
+		int[] dps = new int[cost.length+1];
+		dps[0] =cost[0]; dps[1]= cost[1];
+		for(int i = 2; i<=cost.length; i++){
+			dps[i] = Math.min(dps[i-2], dps[i-1]) + (i==cost.length?0:cost[i]);
 		}
-		return ans;
+		return dps[cost.length];
+
+
 	}
 }
