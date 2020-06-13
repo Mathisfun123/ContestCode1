@@ -1,27 +1,25 @@
+import java.util.Arrays;
+
 //leetcode attempts
 public class Solution {
 	public static void main(String[] args) {
-		int[][] grid = {{1,2,5},{3,2,1}};
-		System.out.println(minPathSum(grid));
+		int[] coins = {1, 2, 5}; int amount= 11;
+		System.out.println(coinChange(coins, amount));
 	}
-	public static int minPathSum(int[][] grid) {
-		int[][] dps = new int[grid.length][grid[0].length];
-		for(int i = 0; i< grid.length; i++){
-			for(int j =0; j< grid[i].length; j++){
-				int left = Integer.MAX_VALUE;
-				try{
-					left = dps[i-1][j];
-				}catch (Exception ignored){
+	public static int coinChange(int[] coins, int amount) {
+		int[] dpcoins = new int[amount+1];
+		for(int i = 0; i< amount+1; i++){
+			dpcoins[i] = Integer.MAX_VALUE;
+		}
+		dpcoins[0] = 0;
+		for(int i = 1; i<= amount; i++){
+			for (int coin : coins) {
+				if (i - coin >= 0) {
+					dpcoins[i] = Math.min(dpcoins[i], 1 + dpcoins[i - coin]);
 				}
-				try{
-					left = Math.min(left, dps[i][j-1]);
-				}catch (Exception ignored){
-
-				}
-				left = left!=Integer.MAX_VALUE? left: 0;
-				dps[i][j] = left + grid[i][j];
 			}
 		}
-		return dps[grid.length-1][grid[0].length-1];
+		return (dpcoins[amount]);
+
 	}
 }
