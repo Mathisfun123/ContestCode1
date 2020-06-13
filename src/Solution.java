@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 //leetcode attempts
 public class Solution {
 	public static void main(String[] args) {
@@ -7,10 +5,21 @@ public class Solution {
 		System.out.println(minPathSum(grid));
 	}
 	public static int minPathSum(int[][] grid) {
-		int dps[][] = new int[grid.length][grid[0].length];
+		int[][] dps = new int[grid.length][grid[0].length];
 		for(int i = 0; i< grid.length; i++){
 			for(int j =0; j< grid[i].length; j++){
-				dps[i][j] = (i==0&&j==0)?grid[0][0]: (i==0)? dps[i][j-1] + grid[i][j]: (j==0)? dps[i-1][j]+ grid[i][j] :Math.min(dps[i-1][j], dps[i][j-1]) + grid[i][j];
+				int left = Integer.MAX_VALUE;
+				try{
+					left = dps[i-1][j];
+				}catch (Exception ignored){
+				}
+				try{
+					left = Math.min(left, dps[i][j-1]);
+				}catch (Exception ignored){
+
+				}
+				left = left!=Integer.MAX_VALUE? left: 0;
+				dps[i][j] = left + grid[i][j];
 			}
 		}
 		return dps[grid.length-1][grid[0].length-1];
