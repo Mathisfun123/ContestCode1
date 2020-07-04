@@ -16,7 +16,7 @@ public class Change {
 		}
 		int amtcoin = coins.length;
 		System.out.println(minnumcoins(val, coins, amtcoin));
-
+		System.out.println(maxcombinations(val,coins,amtcoin));
 
 
 	}
@@ -39,5 +39,18 @@ public class Change {
 			}
 		}
 		return dp[amtcoin][val];
+	}
+	public static int maxcombinations (int val, int[] coins, int amtcoin){
+		int[] combinations = new int[val+1];
+		combinations[0] =1;
+		for(int i = 0; i< amtcoin; i++){
+			for(int j = 0; j<= val; j++){
+				if(j-coins[i]>=0){
+					combinations[j]+=combinations[j-coins[i]];
+				}
+			}
+			System.out.println(Arrays.toString(combinations));
+		}
+		return combinations[val];
 	}
 }
